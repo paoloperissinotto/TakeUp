@@ -1,0 +1,52 @@
+<div class="row" tipo="ExtrudeCfg">
+    <div class="col" style="display:grid;">
+        <h2  class="clr1" > Estrusione </h2>
+        <span>
+            <span class="label" >Steps:</span>
+            
+            <input campoass="STEPS" type="number" step="0.0001" class="dato" onchange="StdModifica(this);"  ></span>
+        </span>
+       <!--  <span>
+            <span class="label" >Ammontare:</span>
+            <input campoass="AMOUNT"  class="dato"  step="0.0001" type="number"  onchange="StdModifica(this);"  ></span>
+        </span> -->
+        <span>
+            <span class="label" >Profondit&agrave;:</span>
+            <input campoass="DEPTH"  class="dato" step="0.0001"  type="number"  onchange="StdModifica(this);"  ></span>
+        </span>
+       
+      
+    </div>
+    <div class="col"  style="display:grid;">
+        <h2  class="clr1" >Beveling </h2>
+        <span>
+            <div class="form-group col-md-6" style="display: inline-flex;">
+                
+                <span class="span-checkbox" >Attivo  </span>
+                <div class="custom-checkbox" campoflag="BEVELENABLED" onclick="toggleCustomCheckbox(this);" style="margin-right: 2%;">
+                    <div class="custom-tick" style="visibility: hidden;"></div>
+                </div>
+                
+                
+            </div>
+        </span>
+       
+        <span>
+            <span class="label" >Dimensione:</span>
+            <input campoass="BEVELTHICKNESS" step="0.0001"  class="dato"  type="number"  onchange="StdModifica(this);"  ></span>
+        </span>
+        <span>
+            <span class="label" >Size:</span>
+            <input campoass="BEVELSIZE"  class="dato" step="0.0001"  type="number"  onchange="StdModifica(this);"  ></span>
+        </span>
+        <span>
+            <span class="label" >Offset:</span>
+            <input campoass="BEVELOFFSET"  class="dato" step="0.0001"  type="number"  onchange="StdModifica(this);"  ></span>
+        </span>
+        <span>
+            <span class="label" >Numero Segmenti:</span>
+            <input campoass="BEVELSEGMENTS"  class="dato" step="0.0001"  type="number"  onchange="StdModifica(this);"  ></span>
+        </span>
+      
+    </div>
+</div>

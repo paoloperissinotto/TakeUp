@@ -1,0 +1,34 @@
+<div class="pjcont bordclr2" >
+    <div class="container" style="margin:8px;width:80%"  tipo="pannelloricerca">
+    <div class="row" style="width:100%;">
+        <div style="text-align: center;width:100%">
+            <h2>Ricerca Procedure Concorsuali</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col" style="display:flex;flex-wrap: nowrap">
+            <div class="form-group">
+                <label  >Denominazione:</label>
+                <input campoass="DENOMINAZIONE" size="50"  onchange="StdModifica(this);" oninput="StdModifica(this);">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col"  style="display:flex;flex-wrap: nowrap">
+                <div class="form-group" >
+                    <label >Codice Fiscale:</label>
+                    <input campoass="CF"size="16"  onchange="StdModifica(this);" oninput="StdModifica(this);">
+                </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col" style="text-align:center;">
+                <span class="user-image" style="right:10px;"><img src="/htmlse/img/logo.svg" bottone onclick="eseguiRicerca(this);" width="50px;"></span>
+        </div>
+    </div>
+    <hr>
+    <div class="row" tipo="risultato_ricerca">
+
+    </div>
+    </div>
+</div>

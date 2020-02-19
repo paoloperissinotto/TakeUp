@@ -1,0 +1,31 @@
+<div style="display:flex;">
+    <div class="custom-checkbox" campoflag="SELEZIONATO" onclick="toggleCustomCheckbox(this);" style="margin-right: 2%;">
+        <div class="custom-tick" style="visibility: hidden;"></div>
+    </div>
+    <input bottone campoass="DESCRIZIONE" onclick="StdModifica(this);">
+        <span>&nbsp;</span>
+    </input>
+    <span style="display:flex;">
+        <i class="mdi mdi-eye-off-outline" style="margin:0.2rem;" title="Nascondi/Visualizza" bottone onclick="ToggleNascondi(this);"></i>
+        <i class="mdi mdi-content-copy" style="margin:0.2rem;" title="Clona oggetto" bottone onclick="fCopy(this);"></i>
+        <i class="mdi mdi-reflect-horizontal" style="margin:0.2rem;" title="Copia riflessa asse X" bottone onclick="fSpecular(this);"></i>
+        <i class="mdi  mdi-reflect-vertical" style="margin:0.2rem;" title="Copia riflessa asse Z" bottone onclick="fZSpec(this);"></i>
+        
+        <i class="mdi mdi-tag-remove" style="margin:0.2rem;" title="Elimina oggetto" bottone onclick="fEliminaQuesto(this);"></i>
+        <i class="fa fa-save"  style="margin:0.2rem;" title="Salva oggetto" bottone onclick="SalvaQuesto(this);"></i>
+        <i class="mdi mdi-arrow-down-circle-outline"  style="margin:0.2rem;" bottone title="Scarica Stl" onclick="ScaricaStl(this);"></i>
+        <i class="mdi mdi-arrow-down-circle-outline"  style="margin:0.2rem;" bottone title="Scarica Obj" onclick="ScaricaObj(this);"></i>
+        <i class="mdi mdi-alpha-e-box-outline"  style="margin:0.2rem;" bottone title="Extrude" onclick="fExtrude(this);"></i>
+        <i class="mdi mdi-resize"  style="margin:0.2rem;" bottone title="Resize" onclick="fResize2(this);"></i>
+        <!-- <i class="mdi mdi-rotate-left"  style="margin:0.2rem;" bottone title="Ruota X" onclick="fRotateX(this);"></i> -->
+        <i class="mdi mdi-rotate-left"  style="margin:0.2rem;" bottone title="Ruota " onclick="fRotate(this);"></i>
+        <i class="mdi  mdi-move-resize-variant"  style="margin:0.2rem;" bottone title="Scala " onclick="fScale(this);"></i>
+       
+        
+        <!-- <i class="mdi mdi-vector-difference"  style="margin:0.2rem;" bottone title="Differenza" onclick="Subtract();"></i> -->
+        <i class="mdi mdi-group"  style="margin:0.2rem;" bottone title="Raggruppa" onclick="fCreaGruppo(this);"></i>
+        <i class="mdi mdi-shape-plus"  style="margin:0.2rem;" bottone title="Crea Shape" onclick="CreaShape(this);"></i>
+        
+    </span>
+</div> 
+   

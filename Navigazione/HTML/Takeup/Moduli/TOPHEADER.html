@@ -1,0 +1,192 @@
+<!-- Start top header -->
+<div class="top-header sticky-top" style="width: 100%;">
+        <!-- <a class="nav-link"  id="menudxhide" onclick="hideMenuBar();document.body.requestFullscreen();" ><i class="fa fa-arrows-alt" style="color:#007bff;"></i></a> -->
+
+        
+        <a class="nav-link" onclick="toggleMenu();" href="#" style="float:left;"><i class="fa fa-bars" ></i></a>
+        <span><img src="/htmlse/img/logo.svg"  width="50px;"> <span class="clr1" style="font-size: xx-large;font-weight: bolder;">TAKEUP</span></span>
+        
+    <!-- <div class="logo-container show-state">
+        <span>ONEC</span><span>LIKE</span>
+    </div> -->
+
+    <ul class="navbar-nav ml-auto" style="font-size:18pt; display:-webkit-box;float:right;/*padding: 50px;*/">
+
+    <!-- li class="user-image2"><img src="/img/blank_male.png"></li -->
+    <!-- li class="nav-item dropdown UserSetting2 font-Regular">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarUserSetting" role="button"
+           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarUserSetting">
+            <a class="dropdown-item" href="#"><i class="far fa-user fa-fw"></i> User Profile</a>
+            <a class="dropdown-item" href="#"><i class="fas fa-cogs fa-fw"></i> Settings</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/ecs/?Service=Logout"><i class="fas fa-sign-out-alt fa-fw"></i> Logout</a>
+        </div>
+    </li>
+    <li class="user-name2 font-Regular">
+        #$#UserInfo->NOMINATIVO#$#
+    </li -->
+    <li class="nav-item ml-3 mr-3">
+            <a class="nav-link"  href="#">
+                <!-- <img src="/img/files/search.svg" style="width: 100%;"> -->
+                <i onclick="StdSearchAllPanel(); return(false);" title="Ricerca Libera" ><img src="/img/files/search.svg" style="width: 100%;"></i>
+            
+                <!-- span class="badge badge-warning navbar-badge">15</span -->
+            </a>
+         </li>
+
+    <!-- <li class="nav-item ml-3 mr-3">
+      <a href="#" class="dropdown-item" onclick="showMessages();return(false);">
+        <i class="fa fa-envelope mr-2"></i><span campoass="NUMERO_MESSAGGI"></span>
+        <span class="float-right text-muted text-sm" campoass="DELAY_MESSAGGI"></span>
+      </a>
+    </li> -->
+    <li class="nav-item dropdown ml-3 mr-3" id="CentroNotifiche">
+            <a class="nav-link" data-toggle="dropdown" href="#">
+              <!-- <i class="fa fa-bell-o" ></i> -->
+              <img src="/img/files/bell.svg" style="width: 100%;">
+              <span class="badge badge-warning navbar-badge" campoass="NUMERO_TOTALE"></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+              <span class="dropdown-item dropdown-header" style="background-color: #519797;color:white;">
+                <span campoass="NUMERO_TOTALE"></span> Notifiche
+                <span style="float:right;"><i class="fa fa-refresh" onclick='getNotifiche();'></i></span></span>
+              <div class="dropdown-divider"></div>
+              
+              <a href="#" class="dropdown-item" onclick="showMessages();return(false);">
+                <i class="fa fa-envelope mr-2"></i><span campoass="NUMERO_MESSAGGI"></span> Nuovi Messaggi
+                <span class="float-right text-muted text-sm" campoass="DELAY_MESSAGGI"></span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item" onclick="showEvents(this);return(false);">
+                <i class="fa fa-calendar mr-2"></i><span campoass="NUMERO_EVENTI"></span> Nuovi Eventi
+                <span class="float-right text-muted text-sm"  campoass="DELAY_EVENTI"></span>
+              </a>
+
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item" onclick="showNews(this);return(false);">
+                <i class="fa fa-newspaper-o mr-2"></i><span campoass="NUMERO_NEWS"></span> Novit&agrave; da OneClike
+                <span class="float-right text-muted text-sm" campoass="DELAY_NEWS"></span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item dropdown-footer">Mostra tutto</a>
+            </div>
+          </li>
+
+      
+      <li class="nav-item dropdown ml-3 mr-3" id="CentroAmministratore">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <!-- <i class="fa fa-cog" ></i> -->
+          <img src="/img/files/SettingsTop.svg" style="width: 100%;">
+          <span class="badge badge-warning navbar-badge" campoass="NUMERO_TOTALE"></span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <span class="dropdown-item dropdown-header" style="background-color: #519797;color:white;">
+            <span campoass="NUMERO_TOTALE"></span> Amministratore del Sistema
+            <!-- <span style="float:right;"><i class="fa fa-refresh" onclick='getNotifiche();'></i></span> --></span>
+
+          <div class="dropdown-divider"></div>
+          
+           <a href="#" class="dropdown-item" onclick="getDettaglioAzienda(this);">
+            <i class="nav-icon fa fa-id-card-o mr-2"></i><span campoass="CONFIG_AZIENDALE"></span> Configurazione Aziendale
+            <span class="float-right text-muted text-sm"  campoass="DELAY_CONFAZIEND"></span>
+          </a>
+
+          <div class="dropdown-divider"></div>
+
+          <a href="#" class="dropdown-item" onclick="getContentSimple('ParametersService','','PARMS_GENERAL','parametri={AMBITO:\'OK\',SERVIZIO:\'QUOTATION\'}','main-container');return(false);">
+            <i class="nav-icon fa fa-bar-chart mr-2"></i><span campoass="PARAMETRI"></span> Parametri
+            <span class="float-right text-muted text-sm"  campoass="DELAY_PARAMETRI"></span>
+          </a>
+
+          <div class="dropdown-divider"></div>
+
+          <a href="#" class="dropdown-item" onclick="">
+            <i class="fa fa-address-card mr-2"></i><span campoass="CONFIG_UTENTI"></span> Configurazione Utenti
+            <span class="float-right text-muted text-sm" campoass="DELAY_CONFUTE"></span>
+          </a>
+
+          <div class="dropdown-divider"></div>
+
+          <a href="#" class="dropdown-item" onclick="">
+            <i class="fa fa-bar-chart mr-2"></i><span campoass="ANALISI_TEMP"></span> Analisi Tempi Utilizzo Funzioni
+            <span class="float-right text-muted text-sm" campoass="DELAY_ANALISI"></span>
+          </a>
+
+          <!-- <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-footer">Mostra tutto</a> -->
+        </div>
+      </li>
+
+    <!-- <li class="user-name2 font-Regular ml-3 mr-3" style="padding-top:6px;padding-right: 6px;"  tipo="user-name2" >
+       Utente
+    </li> -->
+
+    <!-- <li class="nav-item dropdown UserSetting2 font-Regular ml-3 mr-3" style="padding-top:2px;padding-right: 45px;">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarUserSetting" role="button"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarUserSetting" style="left: -60%;">
+            <a class="dropdown-item" onclick="getContentSimple('Quotations','listcustomers','USERPROFILE',null,'main-container');prepareProfiloPage();return(false);" href="#"><i class="fa fa-user"></i> Profilo Utente</a>
+            <a class="dropdown-item" onclick="openChangePassword();" href="#"><i class="fa fa-unlock-alt"></i> Cambia Password</a>
+            < -- <a class="dropdown-item" href="#"><i class="fas fa-cogs fa-fw"></i> Settings</a> -- >
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/ecs/?Service=Logout"><i class="fas fa-sign-out-alt fa-fw"></i> Logout</a>
+        </div>
+    </li> -->
+
+
+    <li class="nav-item ml-3 mr-3">
+      <a class="nav-link"  href="#">
+          <img src="/img/files/Home.svg" style="width: 100%;"> 
+      </a>
+    </li>
+
+    <li class="nav-item dropdown ml-3 mr-3" id="CentroProfilo">
+        <span class="user-image" style="right:10px;"><img src="/htmlse/img/logo.svg" width="30px;"></span>
+      <a class="nav-link" data-toggle="dropdown" href="#">
+        <span class="badge badge-warning navbar-badge" campoass="NUMERO_TOTALE"></span>
+      </a>
+      <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+        <span class="dropdown-item dropdown-header" style="background-color: #519797;color:white;">
+          <span campoass="NUMERO_TOTALE" tipo="user-name2"> Utente</span>
+          <!-- <span style="float:right;"><i class="fa fa-refresh" onclick='getNotifiche();'></i></span> --></span>
+
+        <div class="dropdown-divider"></div>
+        
+          <a class="dropdown-item" onclick="getContentSimple('Quotations','listcustomers','USERPROFILE',null,'main-container');prepareProfiloPage();return(false);" href="#">
+          <i class="fa fa-user mr-2"></i> Profilo Utente
+          <span class="float-right text-muted text-sm"  campoass="DELAY_CONFAZIEND"></span>
+        </a>
+
+        <div class="dropdown-divider"></div>
+
+        <a class="dropdown-item" onclick="openChangePassword();" href="#">
+          <i class="fa fa-unlock-alt mr-2"></i><span campoass="PARAMETRI"></span> Cambia Password
+          <span class="float-right text-muted text-sm"  campoass="DELAY_PARAMETRI"></span>
+        </a>
+
+        <div class="dropdown-divider"></div>
+
+        <a href="/sites/?Service=Logout" class="dropdown-item" onclick="">
+          <i class="fas fa-sign-out-alt fa-fw mr-2"></i><span campoass="CONFIG_UTENTI"></span> Logout
+          <span class="float-right text-muted text-sm" campoass="DELAY_CONFUTE"></span>
+        </a>
+
+        
+
+        <!-- <div class="dropdown-divider"></div>
+        <a href="#" class="dropdown-item dropdown-footer">Mostra tutto</a> -->
+      </div>
+    </li>
+
+
+
+
+     <!-- <li class="user-image" style="right:10px;"><img src="/img/blank_male.png" id="user-image-topheader"></li> -->
+     <!-- <li class="user-image" style="right:10px;"><img src="#$#_SERVER#$#/img/files/logomin.png" ></li> -->
+    <!-- i class="fas fa-search" onclick="StdSearchAllPanel();" title="Ricerca Libera" style="position:absolute;right:330px;"></i -->
+    </ul>
+</div>
+<!-- End top header -->

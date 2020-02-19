@@ -1,0 +1,21 @@
+<div id="page1">
+    <div >
+        <button class="btn bottone" onclick="load();">Load</button>
+        <button class="btn bottone" bottone="excel" onclick="getExcel(this);">Excel</button>
+    </div>
+    <!-- div >
+            <button class="btn bottone" onclick="test();">test</button>
+        </div-->
+       <div class="row" id="panel"> 
+            <div class="col-sm" tipo="elencoParole"></div>
+            <div class="col-sm" tipo="elencoComp"></div>
+            <div class="col-sm" tipo="elencoAltriComp"></div>
+        </div>
+    <div id="target" style="text-align: center;" >
+        <!--sandbox="allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock"-->
+        <iframe style="width:90%;height: 700px;" onload="iframeReady(this);" >
+    
+        </iframe>
+    
+    </div>
+</div>    

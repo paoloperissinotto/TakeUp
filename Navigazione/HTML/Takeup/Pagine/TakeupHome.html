@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <title>Accesso al sito di Amministrazione dei dati de SeoTools</title>
+    <link rel="stylesheet" href="/css/Roboto.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/css/jquery.gritter.css">
+    <!-- link rel="stylesheet" href="/css/fontawesome-all.min.css" -->
+    <link rel="stylesheet" href="/selectize/css/selectize.css?v=5">
+    <link rel="stylesheet" href="/selectize/css/selectize.default.css?v=28">
+    <link rel="stylesheet" href="/adminlte/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/adminlte/dist/css/adminlte.min.css?v=03">
+    <link rel="stylesheet" href="/materialdesign/css/materialdesignicons.min.css">
+  
+    <script>
+        function  iframeReady(el){
+    if (window.readyFrame!=undefined){
+        window.readyFrame(el);
+    }
+}
+    </script>
+</head>
+
+<body>
+    <style>
+    @font-face {
+    font-family: 'gothamroundedbold';
+    src: url('/htmlok/css/fonts/GothamRoundedBold_21016.ttf');
+}
+@font-face {
+    font-family: 'gothamroundedbook';
+    src: url('/htmlok/css/fonts/GothamRoundedBook_21018.ttf');
+}
+@font-face {
+    font-family: 'gothamroundedlight';
+    src: url('/htmlok/css/fonts/GothamRoundedLight_21020.ttf');
+}
+@font-face {
+    font-family: 'gothamroundedmedium';
+    src: url('/htmlok/css/fonts/GothamRoundedMedium_21022.ttf');
+}
+
+html {
+    height: 100%;
+}
+img {
+    border: 0px;
+}
+.clr1{
+    color:#2d5e62;
+    }
+.clr2{    
+    color:#ec8f1c
+    }
+.bclr1{
+    background-color:#2d5e62;
+    }
+.bclr2{    
+    background-color:#ec8f1c
+    }
+.bordclr1{
+    border-color:#2d5e62;
+    border-style: solid;
+    border-width: thin;
+    border-radius: 8px;
+    }
+.bordclr2{    
+    border-left-color:#ec8f1c;
+    border-left-style: solid;
+    border-left-width: thick;
+   /* border-radius: 8px;*/
+    }    
+body {
+    font: 18px gothamroundedbook, Arial, Helvetica, sans-serif; 
+    font-family: gothamroundedbook;
+    height: 100%; 
+    width: 100%; 
+    margin: 0px; 
+   /* background: url("../img/sfondo.png") repeat top left; 
+    background-size: cover;*/
+}
+label{
+    min-width: 240px;
+}
+
+#main-container{
+    width:95%;
+}
+
+.wrapper aside {
+    width:20%;
+}
+
+.form-group label{
+    margin-left:6px;
+}
+.form-group input{
+    margin-left:6px;
+    border-style: none;
+    background-color: #dae7e7;
+    padding-left:3px;
+}
+
+.icona{
+    color:#cae7e7;
+}
+
+a{
+    color:#2d5e62;
+}
+.pjcont{
+    margin:8px;
+    /*display:inline-flex;*/
+    width:95%;
+   
+   /* text-align: center;*/
+}
+
+.label{
+    min-width: 150px;
+}
+.dato{
+    min-width: 70%;
+    font-weight: bolder;
+}
+
+h2{
+    font-weight: bold;
+}
+
+    </style>
+<div class="wrapper">
+        <nav class="clr1 main-header navbar navbar-expand bg-white navbar-light border-bottom-old" style="margin-left: 0!important; z-index: 1200;">
+       
+                #$$#TOPHEADER#$$#
+       </nav>
+ <div style="display:flex;">      
+<aside tipo="menu">       
+<sidebar tipo="menu">
+    <!--ul>
+        <li>
+            <a onclick="getListaUtenti();">Utenti</a>
+        </li>
+    </ul-->
+    <nav class="mt-2 clr2">
+            #$$#SIDEBARA#$$#
+      </nav>
+</sidebar>
+</aside>
+
+<div id="main-container">
+
+</div>
+</div>
+</div>
+
+<!-- Start  -->
+<!--div class="login-form text-center">
+
+    <h1><span style="color:#b1393a;">LeRosa</span><span>Admin</span></h1>
+    
+    <div class="tab-1">
+        <p>Acesso Admin</p>
+        <form id="log-f">
+
+            <input class="user-name" type="text"  placeholder="UserName/Email"><br>
+
+            <div class="alert alert-danger d-none" role="alert">
+
+            </div>
+
+            <div class="buttun-container">
+                <button style="background-color:#b1393a;" onclick="nextStep(event);return(false);">Avanti</button>
+            </div>
+
+        </form>
+    </div> 
+    <div class="tab-2 d-none">
+        <p>Welcome<br>
+            <span class="user-name-label">  </span></p>
+        <form action="/seo/?Service=PageGet&Action=pagedirpage&DIR=SeoTools&PAGE=HOME" method="POST" id="LogForm">
+
+            <input type="password" placeholder="Password" id="Password" name="Password"><br>
+            <input type="hidden" id="Username" name="Username" value="">
+          
+            <div class="buttun-container text-left">
+                <button onclick="previousStep()" class="float-left">Indietro</button>
+                <button class="float-right" style="background-color:#b1393a;" name="Login" value="Login">Accedi</button>
+            </div>
+            <div class="clearfix"></div>
+            <div class="remain-section text-left">
+                <input type="checkbox" class="bg-dark"> <span>Mantienimi L'acceso</span><br><a href="#">Ho dimenticato la password </a>
+            </div>
+        </form>
+
+    </div>
+</div-->
+
+<!-- End    -->
+#$$#STDCAMPI#$$#
+<div id="dialog-popup" style="display: none; margin-top: 1%;">
+
+</div>
+
+<div id="second-dialog-popup" style="display: none; margin-top: 1%;">
+
+</div>
+
+<div id="third-dialog-popup" style="display: none; margin-top: 1%;">
+
+</div>
+
+<div id="detail-dialog-popup" style="display: none; margin-top: 2%;z-index:2001">
+
+  </div>
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/adminlte/dist/js/adminlte.js"></script>
+<script>
+        jQuery.fn.bstooltip = jQuery.fn.tooltip;
+        
+
+        function closeDialog(dialogName) {
+    $('#'+ dialogName).dialog('close');
+    return false;
+}
+    </script>
+    <script src="/js/qrcode.min.js"></script>
+    <script src="/selectize/js/standalone/selectize.min.js"></script>
+<script src="/js/jquery-ui.min.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/jquery.gritter.min.js"></script>
+<script src="/js/xlsx-populate-no-encryption.min.js"></script>
+<script src="/jssds/funzioni.js"></script>
+<script src="/jssds/calendar.js"></script>
+<script src="/jssds/risorsa.js"></script>
+<script src="/jssds/viste.js"></script>
+<script src="/jssds/pdf.js"></script>
+<script src="/htmlok/js/utenti.js"></script>
+<script src="/htmlse/js/ateco.js?v=1"></script>
+<script src="/htmlse/js/sites.js?v=55"></script>
+
+</body>
+</html>

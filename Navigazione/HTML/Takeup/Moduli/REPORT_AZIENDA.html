@@ -1,0 +1,71 @@
+<div class="pjcont bordclr2"  tipo="pannelloreport">
+    <div style="margin:8px;width:90%">
+    <div class="row" style="width:100%;margin-bottom: 18px;">
+        <div style="text-align: center;width:100%">
+            <h1 class="clr1" style="font-weight: bolder;font-size: 30pt;">REPORT AZIENDE</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col" style="display:grid;">
+            <h2  class="clr1" ><i class="mdi mdi-factory icona"></i> Dati Anagrafici</h2>
+            <span>
+                <span class="label" >Denominazione:</span>
+                <span campoass="DENOMINAZIONE" class="dato"  ></span>
+            </span>
+            <span>
+                <span class="label" >Codice Fiscale:</span>
+                <span campoass="CODICEFISCALE"  class="dato"  ></span>
+            </span>
+           
+            <span>
+                <span class="label" >Indirizzo:</span>
+                <span campoass="VIA"  class="dato"    ></span>
+            </span>
+           
+            <span>
+                <span class="label" >Comune:</span>
+                <span campoass="LOCALITA"  class="dato"   ></span>
+            </span>
+        </div>
+        <div class="col"  style="display:grid;">
+            <h2  class="clr1" ><i class="mdi mdi-clipboard-account-outline icona"></i> Attivit&agrave;</h2>
+            <span>
+                <span class="label" >Ateco:</span>
+                <span campoass="ATECO2007"  class="dato"  ></span>
+                <span >&nbsp;-&nbsp;</span>
+                <span campoass="DESCATECO"  class="dato"  ></span>
+            </span>
+            <div tipo="evn">
+                <h2  class="clr1" ><i class="mdi mdi-traffic-light icona" tipo="evnegsem"></i> Eventi Negativi</h2>
+                <span>
+                    <span class="label" >Segnalazioni:</span>
+                    <span campoass="EVNEG"  class="dato" tipo="evnegsem" ></span>
+                </span>
+                <div tipo="evneg" style="margin:4px;"></div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row" style="margin-top:10px;">
+        <div class="col"  tipo="listaweb"  style="display:grid;">
+            <h2  class="clr1" ><i class="mdi mdi-web icona"></i> Web</h2>
+            <span>
+                <span class="label" >Numero Siti:</span>
+                <span campoass="NUMEROSITI"  class="dato"  > </span>
+            </span>
+        </div>
+        <div class="col"  tipo="datitech"  style="display:grid;">
+                
+        </div>
+    </div>
+   
+    <!--hr-->
+    </div>
+</div>
+<!--div class="pjcont bordclr1" style="display:none;" >
+        <div class="container" style="margin:8px;width:80%">
+                <div class="row" tipo="risultato_ricerca">
+
+                    </div>
+        </div>
+</div -->

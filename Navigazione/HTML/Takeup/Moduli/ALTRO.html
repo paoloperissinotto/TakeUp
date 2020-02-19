@@ -1,0 +1,870 @@
+
+<div  style="display:none;">
+<!-- DATI NON VISIBILI NORMALMENTE-->
+
+<div class="card background-trasparente" id="cardTabella" closerow="S" style="display:none;" tipo="tabella">
+    <div class="titoli-affincati" style="display:block; padding: 0.75rem 0.2rem;">
+      <div style="display:inline-flex;">
+        <h6 class="m-0 font-weight-bold text-primary"  campoagg="TITOLO"></h6>
+      </div>
+      <div class="right-box" tipo="comandi" style="display:none;float:right; margin-left:8px;">
+          <div style="float:right;">
+          <button azione="COMPRIMI" class="bottone-minimizza" onclick="minimizzaLaVista(this); return false;" ><span><i class="mdi mdi-chevron-up" ></i></span></button>
+        </div>
+      </div>
+      <div class="right-box" style="display:inline-flex;float:right;">
+          <div class="search-in-table"><input class="search" placeholder="Filtra" type="search"  oninput="filtraTable(this);" type="text"></div>
+          <a href="#" class="plus-yellow" bottone tipo="aggiungi" style="display: none;"><!-- <img src="#$#_SERVER#$#/hopperix/img/plus-yellow.svg"> --></a>
+        </div>
+      <div class="right-box" tipo="campiricerca" style="display:none;float:right;margin-left:8px;">
+          <div class="search-in-table" ><input class="search"  tipo="strricerca" placeholder="Ricerca..." type="search"   type="text"></div>
+          <a href="#" class="plus-yellow"></a>
+        </div>
+      <!-- <div class="right-box">
+        <div class="search-in-table"><input class="search" placeholder="Filtra" type="search"  oninput="filtraTable(this);" type="text"></div>
+        <a href="#" class="plus-yellow" bottone tipo="aggiungi" ><img src="#$#_SERVER#$#/hopperix/img/plus-yellow.svg"></a>
+      </div> -->
+      <!-- <div class="right-box" tipo="comandi" style="display:none;">
+          <div style="float:right;">
+          <button azione="COMPRIMI" class="bottone-minimizza" onclick="minimizzaLaVista(this); return false;" ><span><i class="mdi mdi-chevron-up" ></i></span></button>
+        </div>
+      </div> -->
+    </div>
+    <div class="card-body overflow-table">
+      <table closerow="S">
+          <thead>
+              <tr class="title-row" style="display:none;">
+              </tr>
+            </thead>
+            <tbody>
+            <tr style="display:none;" >
+             
+            </tr>
+            
+            </tbody>
+       
+     </table>
+    </div>
+    <!--div class="close-row"></div-->
+    <div class="titoli-affincati">
+      <div></div>
+      <div class="right-box pagination" tipo="paginazione-table">
+        <span tipo="cardTabella_prev">
+          <a href="#" class="next-prev" onclick="paginaPrev(this);return(false);" ><!-- <img src="#$#_SERVER#$#/hopperix/img/next-prev-arrow.svg"> --></a>
+        </span>
+        <div class="page-of-pagination" tipo="cardTabella_infoold" style="display:none;">Pagina <b>1 di 1</b></div>
+        <div class="page-of-pagination" tipo="cardTabella_info2" >Pagina <input type="number" onchange="goToPage(this);" step="1" min="1" tipo="pagcorr" style="width: 3rem;font-weight: bolder;"/> di <span tipo="pagtot" style="font-weight: bolder;"></span></div>
+        <span tipo="cardTabella_next">
+          <a href="#" class="next-prev next"  onclick="paginaNext(this);return(false);" ><!-- <img src="#$#_SERVER#$#/hopperix/img/next-prev-arrow.svg"> --></a>
+          </span>
+      </div>
+    </div>
+    </div>
+
+<table id="StdTable">
+    <thead>
+        <tr>
+            <th tipo="STDTH"></th>
+            <th tipo="ACTIONSTH"></th>
+            <th tipo="THBUTTON">
+              <!-- <button campoass="NOMECAMPO"></button> -->
+              <div class="authorize"><a class="btn-autorizza" href="#" bottone campoass="NOMECAMPO"></a></div>
+            </th>
+        </tr>
+    </thead>
+    <tbody >
+        <tr class="tabts-row">
+                <!-- Campo td per georeferenziare le sedi di una azienda con un campo libero per inserire il valore direttamente  -->
+                <td tipo="TDLUOGOEDITSEDI" class="tabts-cel"  onmouseover="$(this).css('cursor','cell');">
+                        <span campo="NOMECAMPO" >
+                            <input campoass="NOMECAMPO_ID" type="hidden">
+                            <input class="form-control" selectize="S"  type="text" campoass="NOMECAMPO"  onchange="StdModifica(this);"/>
+                            <!--select  campoass="NOMECAMPO" class="tabts-input" onchange="StdAggiornaCampoSelectLuogo(this);" >
+                                <option></option>
+                                #REPEAT##LISTX#AZIENDA->SEDI#LISTX#
+                                    <option value="#$#LUOGO_ID#$#;#$#LUOGO#$#">#$#LUOGO#$#</option>
+                                #REPEAT#
+                            </select-->
+                           
+                        </span>
+                </td>
+                <td tipo="TDLUOGONOTEDIT" class="tabts-cel">
+                        <span campo="NOMECAMPO">
+                               <input type="hidden" campoass="NOMECAMPO_ID" > 
+                               <input  class="tabts-input" campoass="NOMECAMPO"  disabled />
+                            
+                        </span>
+                </td>
+                <td tipo="TDNOTEDITINPUT" class="tabts-cel">
+                        <span campo="NOMECAMPO">
+                               <input class="tabts-input" campoass="NOMECAMPO"  disabled/>
+                            
+                        </span>
+                </td>
+                <td tipo="TDEDITLISTA" class="tabts-cel">
+                    <span campo="NOMECAMPO">
+                           <input class="tabts-input" campoass="NOMECAMPO" list="lista"  />
+                    </span>
+                </td>
+                <td tipo="LISTALAVORAZIONI" class="tabts-cel">
+                    <span campo="NOMECAMPO">
+                           <input class="tabts-input" campoass="NOMECAMPO" multiple list="listalavorazionipreventivo"  />
+                    </span>
+                </td>
+                   <td tipo="TDNOTEDIT" class="tabts-cel">
+                        <span campo="NOMECAMPO">
+                               <span class="tabts-input" campoass="NOMECAMPO"  />
+                            
+                        </span>
+                   </td>
+
+                   <td tipo="TDNOTEDITVIEW" class="tabts-cel">
+                      <span campo="NOMECAMPO">
+                             <span class="tabts-input" campoass="NOMECAMPO" ondblclick="visualizzaOggetto(this); return false;"></span>
+                          
+                      </span>
+                   </td>
+                   <!-- <td tipo="TDNOTEDITNOTE" class="tabts-cel" style="max-width: 300px">
+                      <span campo="NOMECAMPO">
+                             <span class="tabts-input" campoass="NOMECAMPO"  />
+                          
+                      </span>
+                 </td> -->
+                 <td tipo="TDNOTTEXTAREANOTE" class="tabts-cel" style="max-width: 300px">
+                    <span campo="NOMECAMPO" >
+                           <textarea class="tabts-input" campoass="NOMECAMPO" rows="NUMERORIGHE" onchange="StdModifica(this)" disabled></textarea>
+                    </span>
+               </td>
+                <td tipo="TDNOTEDITCOLORE" class="tabts-cel">
+                    <span campo="NOMECAMPO">
+                           <span class="tabts-input" campocolore="COLORE" campoass="NOMECAMPO"  />
+                        
+                    </span>
+               </td>
+               <td tipo="TDNOTEDITPHONE" class="tabts-cel">
+                <span campo="NOMECAMPO" style="display: inline-flex;">
+                  <span class="tabts-input" campoass="NOMECAMPO"  ></span>
+                  <a href="#" tipo="PHONE" campotel="NOMECAMPO" class="bottoncino"><i class="mdi mdi-phone-outgoing"></i></a>
+                </span>
+              </td>
+              <td tipo="TDNOTEDITEMAIL" class="tabts-cel">
+                <span campo="NOMECAMPO" style="display: inline-flex;">
+                  <span class="tabts-input" campoass="NOMECAMPO"  ></span>
+                  <a href="#" tipo="MAIL" campomail="NOMECAMPO" class="bottoncino" ><i class="mdi mdi-email-plus-outline"></i></a>
+                </span>
+              </td>
+               <td tipo="TDNOTEDITSTATO" class="tabts-cel">
+                  <div class="approvation" campo="NOMECAMPO" style="display:inline-flex;">
+                      <div class="circle-approvation" camposemaforo="STATO_COLORE" style="background-color: #75ABAB;margin-right: 0.3rem;"></div>
+                         <span class="tabts-input textual" campoass="NOMECAMPO"  ></span>
+                  </div>
+               </td>
+               <td tipo="TDSEMAFORO" class="tabts-cel">
+                  <span campo="NOMECAMPO">
+                    <div class="circle-approvation" camposemaforo="COLORE" style="background-color: #75ABAB;"></div>
+                    </span>
+                </td>
+                <td tipo="TDNOTEDITBATTERY" class="tabts-cel">
+                  <div class="approvation" campo="NOMECAMPO" style="display:inline-flex;font-size:0.8rem;font-weight: bolder;">
+                      <div  campocolore="BATTERY_COLORE" style="margin-right: 0.3rem;font-size:1.4rem">
+                       <i class="mdi mdi-battery-bluetooth-variant" campoclasse="BATTERY_CLASSE"></i>
+                      </div>
+                        <span class="tabts-input textual" campoass="NOMECAMPO"  ></span>&nbsp;%
+                  </div>
+               </td>
+                   <td tipo="TDNOTEDITCOPY" class="tabts-cel" onclick="copytext(this);">
+                    <span campo="NOMECAMPO">
+                           <span class="tabts-input" campoass="NOMECAMPO"  />
+                        
+                    </span>
+                  </td>
+                  <td tipo="TDTEXTAREA" class="tabts-cel">
+                      <span campo="NOMECAMPO" >
+                             <textarea class="tabts-input" campoass="NOMECAMPO" rows="NUMERORIGHE" onchange="StdModifica(this)" style="width:100%;" ></textarea>
+                      </span>
+                 </td>
+                 <td tipo="TDTEXTAREAWIDE" class="tabts-cel">
+                    <span campo="NOMECAMPO" >
+                           <textarea class="tabts-input" campoass="NOMECAMPO" rows="5" onchange="StdModifica(this)" style="width:400px;" ></textarea>
+                    </span>
+               </td>
+                 <td tipo="TDNOTTEXTAREA" class="tabts-cel">
+                    <span campo="NOMECAMPO" >
+                           <textarea class="tabts-input" campoass="NOMECAMPO" rows="NUMERORIGHE" onchange="StdModifica(this)" disabled></textarea>
+                    </span>
+               </td>
+                   <td tipo="TDNOTEDITHTML" class="tabts-cel">
+                        <span campo="NOMECAMPO">
+                               <span class="tabts-input" campoass="NOMECAMPO"  />
+                            
+                        </span>
+                   </td>
+                   <td tipo="TDNOTEDITGODOWN" class="tabts-cel">
+                        <span campo="NOMECAMPO" style="display:inline;width:95%">
+                               <span tipo="INDENT"  style="margin-right: 8px;"></span>
+                               <span class="tabts-input" campoass="NOMECAMPO"  style="max-width:95%;"></span>
+                               <div style="float:right;display:inline-flex;">
+                                <span tipo="ACTION">
+                                    <i class="mdi mdi-arrow-down-bold-circle-outline" onclick="showDown(this);" style="float:right;"></i>
+                                </span>
+                              </div>
+                        </span>
+                   </td>
+                   <td tipo="TDGODOWNPREV" class="tabts-cel">
+                      <span campo="NOMECAMPO" style="display:inline-flex;width:95%">
+                             <span tipo="INDENT" style="margin-right: 8px;">
+                                <img src="/htmlok/img/simple_icon.svg" campoimage="IMAGE" class="Icon3 dragme ui-draggable ui-draggable-handle"  >
+                             </span>
+                             <input class="tabts-input" type="text" campoass="NOMECAMPO" style="width:95%;"  onchange="StdModifica(this);"   />
+                             <div style="float:right;display:inline-flex;">
+                                
+                                <i class="mdi mdi-arrow-down-bold-circle-outline" onclick="showDownPrev(this);" style="float:right;"></i>
+                                <i class="fa fa-search " style="float:right;margin-left:4px;display:none;" onclick="toggleSearch(this);"></i>
+                             </div>
+                      </span>
+                 </td>
+                 <td tipo="TDNOGODOWNPREV" class="tabts-cel">
+                    <span campo="NOMECAMPO" style="display:inline-flex;width:95%">
+                           <span tipo="INDENT"  style="margin-right: 8px;">
+                              <img src="/htmlok/img/simple_icon.svg" campoimage="IMAGE" class="Icon3 dragme ui-draggable ui-draggable-handle"  >
+                           </span>
+                           <input class="tabts-input" type="text" campoass="NOMECAMPO" style="width:95%;"  onchange="StdModifica(this);"   />
+                           
+                              <div style="float:right;display:inline-flex;">
+                              <!-- i class="mdi mdi-arrow-down-bold-circle-outline" onclick="showDownPrev(this);" style="float:right;"></i -->
+                              <i class="fa fa-search " style="float:right;margin-left:4px;display:none;" onclick="toggleSearch(this);"></i>
+                              </div>
+                           
+                    </span>
+               </td>
+               <td tipo="TDGODOWN" class="tabts-cel">
+                <span campo="NOMECAMPO" style="display:inline-flex;width:95%">
+                       <span tipo="INDENT" style="margin-right: 8px;">
+                          <img src="/htmlok/img/simple_icon.svg" campoimage="IMAGE" class="Icon3 dragmespec ui-draggable ui-draggable-handle"  >
+                       </span>
+                       <input class="tabts-input" type="text" campoass="NOMECAMPO" style="width:95%;"  onchange="StdModifica(this);"   />
+                       <div style="float:right;display:inline-flex;">
+                          
+                          <i class="mdi mdi-arrow-down-bold-circle-outline" bottone godown onclick="StdShowDown(this);" style="float:right;"></i>
+                          <i class="fa fa-search " style="float:right;margin-left:4px;display:none;" onclick="toggleSearch(this);"></i>
+                       </div>
+                </span>
+           </td>
+           <td tipo="TDDOCDIR" class="tabts-cel">
+              <div tipo="sez-container" class="space-upload2 dropzonepj"  bottone ondragenter="$(this).css('background-color','var(--hop-sec)');" ondragleave="$(this).css('background-color','#EDF2F2');" ondrop="fileDropGo(event,this,'NOMESEZIONE');" ondragover="dragOverHandler(event);">
+                <!-- <span>Trascina i file qui dentro oppure</span> -->
+                <div class="file-list dz-message "   >
+                  
+                </div>
+                <div class="authorize"><a class="btn-autorizza btn-color-verde" style="font-size: 0.5rem; margin-bottom: 4px;" tipo="CARICAFILE" href="#" bottone onclick="try{console.log('load file on :'+$(this).attr('hid'));loadDocumentStd(this,'NOMESEZIONE');return(false);} catch(msg){alert(msg);}; return(false);">Seleziona i file</a></div>
+            </div>
+           </td>
+           <td tipo="TDNOGODOWN" class="tabts-cel">
+              <span campo="NOMECAMPO" style="display:inline-flex;width:95%">
+                     <span tipo="INDENT"  style="margin-right: 8px;">
+                        <img src="/htmlok/img/simple_icon.svg" campoimage="IMAGE" class="Icon3 dragmespec ui-draggable ui-draggable-handle"  >
+                     </span>
+                     <input class="tabts-input" type="text" campoass="NOMECAMPO" style="width:95%;"  onchange="StdModifica(this);"   />
+                     
+                        <div style="float:right;display:inline-flex;">
+                        <!-- i class="mdi mdi-arrow-down-bold-circle-outline" onclick="showDownPrev(this);" style="float:right;"></i -->
+                        <i class="fa fa-search " style="float:right;margin-left:4px;display:none;" onclick="toggleSearch(this);"></i>
+                        </div>
+                     
+              </span>
+         </td>
+                   <td tipo="TDNOTEDITNOGODOWN" class="tabts-cel">
+                        <span campo="NOMECAMPO" style="display:inline-flex;width:95%">
+                                <span tipo="INDENT"  style="margin-right: 8px;"></span>
+                               <span class="tabts-input" campoass="NOMECAMPO"  style="max-width:95%;"></span>
+                                
+                        </span>
+                   </td>   
+                   <td tipo="TDBUTTON"><div  campo="NOMECAMPO"><button><span campoass="NOMECAMPO"></span></button></div></td>   
+                <td tipo="TDNONE"></td>
+                <td tipo="TDNOTEDITNUMBER" class="tabts-cel">
+                        <span campo="NOMECAMPO">
+                               <input class="tabts-input" type="number"  step="0.01" class="tabts-input" limit2 campoass="NOMECAMPO"  disabled/>
+                           
+                        </span>
+                   </td>
+                   <td tipo="TDNOTEDITNUMBER100PX" class="tabts-cel" style="width:100px">
+                    <span campo="NOMECAMPO">
+                           <input class="tabts-input" type="number" style="width:90px" step="0.01" class="tabts-input" limit2 campoass="NOMECAMPO"  disabled/>
+                       
+                    </span>
+               </td>
+               <td tipo="TDNOTEDITNUMBER5100PX" class="tabts-cel" style="width:100px">
+                  <span campo="NOMECAMPO">
+                         <input class="tabts-input" type="number" style="width:90px" step="0.00001" class="tabts-input" limit5 campoass="NOMECAMPO"  disabled/>
+                     
+                  </span>
+             </td>
+                   <td tipo="TDNOTEDITNUMBERMIN" class="tabts-cel">
+                    <span campo="NOMECAMPO">
+                           <input class="tabts-input" type="number" min="0" step="0.01" class="tabts-input" limit2 campoass="NOMECAMPO"  disabled/>
+                       
+                    </span>
+               </td>
+                <td tipo="TDCHECKBOX">
+                        <div campo="NOMECAMPO" >
+                            <div  class='custom-checkbox' campoflag="NOMECAMPO" onclick="toggleCustomCheckbox(this);">
+                                    <div class='custom-tick'></div>
+                            </div>
+                        </div>
+                </td>  
+                <td tipo="TDNOTEDITCHECKBOX">
+                        <div campo="NOMECAMPO" >
+                            <div  class='custom-checkbox isDisabled' campoflag="NOMECAMPO" onclick="toggleCustomCheckbox(this);">
+                                    <div class='custom-tick'></div>
+                            </div>
+                        </div>
+                </td>   
+                <td tipo="TDEDITNUMBER" class="tabts-cel"   onmouseover="$(this).css('cursor','cell');">
+                        <span campo="NOMECAMPO" >
+                            <input class="tabts-input" type="number" step="0.01" campoass="NOMECAMPO" limit2  onkeydown="newArrows(event);" onchange="StdModificaNumber(this);"/>
+                            
+                        </span>   
+                </td>
+                <td tipo="TDEDITINTEGER" class="tabts-cel"   onmouseover="$(this).css('cursor','cell');">
+                  <span campo="NOMECAMPO" >
+                      <input class="tabts-input" type="number" step="1" campoass="NOMECAMPO" limit2  onkeydown="newArrows(event);"  onchange="StdModificaNumber(this);"/>
+                      
+                  </span>   
+                </td>
+                <td tipo="TDEDITNUMBER70PX" class="tabts-cel" style="width:70px"  onmouseover="$(this).css('cursor','cell');">
+                  <span campo="NOMECAMPO" >
+                      <input class="tabts-input" type="number" style="width: 65px" step="0.01"  onkeydown="newArrows(event);" campoass="NOMECAMPO" limit2  onchange="StdModificaNumber(this);"/>
+                      
+                  </span>   
+                </td>
+                <td tipo="TDEDITNUMBER100PX" class="tabts-cel" style="width:100px"  onmouseover="$(this).css('cursor','cell');">
+                  <span campo="NOMECAMPO" >
+                      <input class="tabts-input" type="number" style="width:90px" step="0.01"  onkeydown="newArrows(event);" campoass="NOMECAMPO" limit2   onchange="StdModificaNumber(this);"/>
+                      
+                  </span>   
+                </td>
+                <td tipo="TDEDITNUMBERDEC" class="tabts-cel"   onmouseover="$(this).css('cursor','cell');">
+                  <span campo="NOMECAMPO" >
+                      <input class="tabts-input" type="number" step="0.1" campoass="NOMECAMPO" limit2  onkeydown="newArrows(event);" onchange="StdModificaNumber(this);"/>
+                      
+                  </span>   
+              </td>
+              <td tipo="TDEDITNUMBERDECMIN" class="tabts-cel"   onmouseover="$(this).css('cursor','cell');">
+                <span campo="NOMECAMPO" >
+                    <input class="tabts-input" type="number" min="0" step="0.1" campoass="NOMECAMPO" limit2  onkeydown="newArrows(event);" onchange="StdModificaNumber(this);"/>
+                    
+                </span>   
+            </td>
+                <td tipo="TDEDITNUMBERSTEP1DAYS" class="tabts-cel"   onmouseover="$(this).css('cursor','cell');">
+                    <span campo="NOMECAMPO" >
+                        <input class="tabts-input" type="number" step="1" min="1" max="365" campoass="NOMECAMPO"  onkeydown="newArrows(event);"  onchange="StdModificaNumber(this);"/>
+                        
+                    </span>   
+                </td>
+                <td tipo="TDEDITNUMBERSTEP10PCT" class="tabts-cel"   onmouseover="$(this).css('cursor','cell');">
+                    <span campo="NOMECAMPO" >
+                        <input class="tabts-input" type="number" step="10" min="10" max="100" campoass="NOMECAMPO"  onkeydown="newArrows(event);"  onchange="StdModificaNumber(this);"/>
+                       %
+                    </span>   
+                </td>
+
+                <td tipo="TDEDITEURO" class="tabts-cel"   onmouseover="$(this).css('cursor','cell');">                      
+                  <span campo="NOMECAMPO">
+                    <!--i class="fa fa-euro-sign" style="font-size: 80%;"></i-->
+                    &euro;&nbsp;&nbsp;
+                    <input class="tabts-input" type="number" step="0.01" campoass="NOMECAMPO"  limit5  onkeydown="newArrows(event);" onchange="StdModificaNumber(this);">
+                  </span>  
+                </td>
+                <td tipo="TDEDITEURO85PX" class="tabts-cel" style="width: 85px"   onmouseover="$(this).css('cursor','cell');">                      
+                  <span campo="NOMECAMPO">
+                    <!--i class="fa fa-euro-sign" style="font-size: 80%;"></i-->
+                    &euro;&nbsp;&nbsp;
+                    <input class="tabts-input" type="number" style="width: 70px" step="0.01" campoass="NOMECAMPO"  onkeydown="newArrows(event);" onchange="StdModificaNumber(this);">
+                  </span>  
+                </td>
+                <td tipo="TDEDITORA" class=" tabts-cel"  onclick="StdEditOra(this);" onmouseover="$(this).css('cursor','cell');">
+                  <span campo="NOMECAMPO" >
+                     <input class="tabts-input" type="hidden" style="/* min-width:150px; */" campoass="NOMECAMPO"  onfocusout="StdAggiornaCampo(this);"  />
+                      <span></span>
+                  </span>   
+                </td>
+                <!-- <td tipo="TDNOTEDITORA" class=" tabts-cel"  onclick="StdEditOra(this);" onmouseover="$(this).css('cursor','cell');">
+                  <span campo="NOMECAMPO" >
+                     <input class="tabts-input" type="hidden" style="min-width:150px;" campoass="NOMECAMPO"  onfocusout="StdAggiornaCampo(this);"  />
+                      <span></span>
+                  </span>   
+                </td> -->
+                <td tipo="TDNOTEDITEURO" class="tabts-cel"   onmouseover="$(this).css('cursor','cell');">
+                  <span campo="NOMECAMPO">
+                    <!--i class="fa fa-euro-sign" style="font-size: 80%;"></i-->
+                    &euro;&nbsp;&nbsp;
+                    <input class="tabts-input" type="number"  step="0.01" class="tabts-input" campoass="NOMECAMPO" limit5  disabled>
+                  </span>
+                </td>
+                <td tipo="TDNOTEDITEURO85PX" class="tabts-cel" style="width: 85px"  onmouseover="$(this).css('cursor','cell');">
+                  <span campo="NOMECAMPO">
+                    <!--i class="fa fa-euro" style="font-size: 80%;"></i-->
+                    &euro;&nbsp;&nbsp;
+                    <input class="tabts-input" type="number" style="width: 70px" step="0.01" class="tabts-input" campoass="NOMECAMPO"  disabled>
+                  </span>
+                </td>
+                <td tipo="TDNOTEDITEURO100PX" class="tabts-cel" style="width: 100px"  onmouseover="$(this).css('cursor','cell');">
+                  <span campo="NOMECAMPO">
+                    <!--i class="fa fa-euro" style="font-size: 80%;"></i-->
+                    &euro;&nbsp;&nbsp;
+                    <input class="tabts-input" type="number" style="width: 90px" step="0.01" class="tabts-input" campoass="NOMECAMPO" disabled>
+                  </span>
+                </td>
+
+                <td tipo="TDEDITINT" class="tabts-cel"   onmouseover="$(this).css('cursor','cell');">
+                  <span campo="NOMECAMPO" >
+                      <input class="tabts-input" type="number" step="1" min="0" campoass="NOMECAMPO"  onchange="StdModificaNumber(this);"/>
+                      
+                  </span>   
+                </td>
+                
+                <td tipo="TDNOTEDITINT" class="tabts-cel"   onmouseover="$(this).css('cursor','cell');">
+                    <span campo="NOMECAMPO" >
+                        <input class="tabts-input" type="number" step="1" min="0" campoass="NOMECAMPO"  onchange="StdModificaNumber(this);" disabled/>
+                        
+                    </span>   
+                  </td>
+
+                <td tipo="TDSELECTIZEMULTI" class="tabts-cel"   onmouseover="$(this).css('cursor','cell');" style="overflow:visible;">
+                  <span campo="NOMECAMPO" >
+                      <input type="text" class="form-control" id="tdselectizemulti"  campoass="NOMECAMPO" name="" tipo="SELECTIZE" onchange="StdModifica(this);">
+                      <!-- <input class="form-control" selectize="S"  type="text" campoass="NOMECAMPO"  onchange="StdModifica(this);"/> -->
+                  </span>   
+                </td>
+
+                <td tipo="TDSELECTIZE" class="tabts-cel"   onmouseover="$(this).css('cursor','cell');" style="overflow:visible;">
+                        <span campo="NOMECAMPO" >
+                            <input class="form-control" selectize="S"  type="text" campoass="NOMECAMPO"  onchange="StdModifica(this);"/>
+                        </span>   
+                </td>
+
+                <td tipo="TDSELECTIZEMEDIUM" class="tabts-cel"   onmouseover="$(this).css('cursor','cell');" style="overflow:visible;min-width: 150px;z-index: 3000">
+                    <span campo="NOMECAMPO" >
+                        <input class="form-control" selectize="S" type="text" campoass="NOMECAMPO"  onchange="StdModifica(this);"/>
+                    </span>   
+            </td>
+
+                <td tipo="TDSELECTIZENOFM" class="tabts-cel"   onmouseover="$(this).css('cursor','cell');" style="overflow:visible;">
+                    <span campo="NOMECAMPO" >
+                        <input class="" selectize="S"  type="text" campoass="NOMECAMPO"  onchange="StdModifica(this);"/>
+                    </span>   
+              </td>
+                <!-- usato in scheda utente nella tabella corsi -->
+                <td tipo="TDSELECTIZELARGE" class="tabts-cel"  onmouseover="$(this).css('cursor','cell');" style="overflow:visible;min-width: 350px;z-index: 3000">
+                  <span campo="NOMECAMPO" >
+                      <input class="form-control" selectize="S"  type="text" campoass="NOMECAMPO"  onchange="StdModifica(this);"/>
+                  </span>   
+          </td>
+                <td tipo="TDSELECTIZEDISABLED" class="tabts-cel"   onmouseover="$(this).css('cursor','cell');">
+                        <span campo="NOMECAMPO" >
+                            <input class="form-control" disabled selectize="S" type="text" campoass="NOMECAMPO"  onchange="StdModifica(this);"/>
+                        </span>   
+                </td>
+                <td tipo="TDDATAEDIT" class="tabts-cel"   onmouseover="$(this).css('cursor','cell');">
+                        <span campo="NOMECAMPO" >
+                            <input class="form-control form form-calendar tabts-input" type="date" campoass="NOMECAMPO"  onchange="StdModifica(this);"/>
+                        </span>   
+                </td>
+                <td tipo="TDDATANOTEDIT" class="tabts-cel"   onmouseover="$(this).css('cursor','cell');">
+                    <span campo="NOMECAMPO" >
+                        <input class="form-control form form-calendar tabts-input" type="date" campoass="NOMECAMPO"  onchange="StdModifica(this);" disabled/>
+                    </span>   
+            </td>
+                <td tipo="TDORAAEDIT" class="tabts-cel"   onmouseover="$(this).css('cursor','cell');">
+                  <span campo="NOMECAMPO" >
+                      <input class="form-control  tabts-input" type="time" campoass="NOMECAMPO"  onchange="StdModifica(this);"/>
+                  </span>   
+                </td>
+                <td tipo="TDDATAORAAEDIT" class="tabts-cel"   onmouseover="$(this).css('cursor','cell');">
+                  <span campo="NOMECAMPO" >
+                      <input class="form-control form form-calendar tabts-input" type="datetime-local" campoass="NOMECAMPO"  onchange="StdModifica(this);"/>
+                  </span>   
+                </td>
+                <td tipo="TDINDIRIZZOSEL" class="tabts-cel"   onmouseover="$(this).css('cursor','cell');">
+                    <input type="text"    campoass="LUOGO" tipo="SELECTIZE" selectize="S" dominio="INDIRIZZI_POSSIBILI"
+                                                            class="form-control" onchange="StdModifica(this);">
+                </td>    
+                <td tipo="TDINDIRIZZO" style="min-width: 150px" class="tabts-cel"   onmouseover="$(this).css('cursor','cell');">
+                        <span campo="NOMECAMPO" >
+                    <input type="text" tipo="geo" placeholder="Inserisci indirizzo"  campoass="NOMECAMPO" onclick="StdSearchIndirizzo(this);"
+                                                                class="form-control" >
+                                                               <!--  <i class="fa fa-search " style="float:right;margin-right:3px;" onclick="displayMap(this);"></i> -->
+                        </span>
+                </td>
+                <td tipo="TDSELINDIRIZZO" class="tabts-cel"   onmouseover="$(this).css('cursor','cell');">
+                        <span campo="NOMECAMPO" style="display:inline;">
+                        <input type="text" placeholder="Seleziona indirizzo dalla lista" selectize="S"   campoass="NOMECAMPO"  tipo="SELECTIZE" 
+                                class="form-control" onchange="StdModificaListaInd(this);" >
+                                <br>
+                    <!-- <input type="text" tipo="geo" placeholder="Inserisci indirizzo"   campoass="NOMECAMPO" onclick="StdSearchIndirizzo(this);"
+                                                                class="form-control" > -->
+                        <!--  <i class="fa fa-search " style="float:right;" onclick="displayMap(this);"></i> -->
+                        </span>
+                </td>  
+                <td tipo="TDSELINDIRIZZOA" class="tabts-cel"   onmouseover="$(this).css('cursor','cell');">
+                    <span campo="NOMECAMPO" style="display:inline;">
+                    <input type="text" placeholder="Seleziona indirizzo dalla lista" selectize="S"   campoass="NOMECAMPO"  tipo="SELECTIZE" 
+                            class="form-control" onchange="StdModificaListaInd2(this);" >
+                            <br>
+                <!-- <input type="text" tipo="geo" placeholder="Inserisci indirizzo"   campoass="NOMECAMPO" onclick="StdSearchIndirizzo(this);"
+                                                            class="form-control" > -->
+                    <!--  <i class="fa fa-search " style="float:right;" onclick="displayMap(this);"></i> -->
+                    </span>
+            </td>  
+                <td tipo="TDSELINDIRIZZO2" class="tabts-cel"   onmouseover="$(this).css('cursor','cell');">
+                  <span campo="NOMECAMPO" style="display:inline;">
+                  <!--input type="text" selectize="S" placeholder="Seleziona indirizzo dalla lista"  campoass="NOMECAMPO"  tipo="SELECTIZE" 
+                          class="form-control" onchange="StdModificaListaInd(this);" >
+                          <br-->
+                    <input type="text" class="tabts-input"  tipo="geo" placeholder="Inserisci indirizzo"   campoass="NOMECAMPO" onclick="StdSearchIndirizzo(this);"
+                                                          class="form-control" >
+                   <i class="fa fa-search " style="float:right;" onclick="displayMap(this);"></i>
+                  </span>
+                </td>                                    
+                <td tipo="TDEDITNUMBER5" class="tabts-cel"  onmouseover="$(this).css('cursor','cell');">
+                        <span campo="NOMECAMPO" >
+                            <input class="tabts-input" type="number"  step="0.00001" campoass="NOMECAMPO"  onchange="StdModificaNumber(this);"/>
+                        </span>   
+                </td>
+                <td tipo="TDNOTEDITNUMBER5" class="tabts-cel"  onmouseover="$(this).css('cursor','cell');">
+                    <span campo="NOMECAMPO" >
+                        <input class="tabts-input" type="number"  step="0.00001" campoass="NOMECAMPO" disabled limit5 onchange="StdModificaNumber(this);"/>
+                    </span>   
+               </td>
+                <td tipo="TDSEARCH" class="tabts-cel"  >
+                        <span campo="NOMECAMPO"  style="display:inline-flex;width:100%;">
+                           <input class="tabts-input" type="text" campoass="NOMECAMPO" style="width:95%;"  onchange="StdModifica(this);"   />
+                           <!-- oninput="StdAutocompleteInputG(this);" -->
+                           <i class="fa fa-search " style="float:right;display:none;" onclick="toggleSearch(this);"></i>
+                           
+                        </span>   
+                </td>
+                <td tipo="TDSEARCHLENS" class="tabts-cel"  >
+                  <span campo="NOMECAMPO"  style="display:inline-flex;width:100%;">
+                     <input class="tabts-input" type="text" campoass="NOMECAMPO" style="width:95%;"  onchange="StdModifica(this);"   />
+                     <!-- oninput="StdAutocompleteInputG(this);" -->
+                     <i class="fa fa-search " style="float:right;" onclick="toggleSearch(this);"></i>
+                     
+                  </span>   
+          </td>
+                <td tipo="TDSEARCHBOM" class="tabts-cel" onclick="StdEditShow(this);" onmouseover="$(this).css('cursor','cell');">
+                        <span campo="NOMECAMPO" >
+                           <input class="article-search tabts-input" type="text" campoass="NOMECAMPO"  onchange="StdAggiornaCampoSimple(this);"   style="display:none;" />
+                            <span></span>
+                        </span>   
+                </td>
+                <td tipo="TDSEARCHFIELD" class="tabts-cel"  >
+                        <span campo="NOMECAMPO" >
+                           <input class="article-search tabts-input" type="text" campoass="NOMECAMPO"  oninput="StdSearchField(this);"  />
+                           
+                           
+                        </span>   
+                </td>
+                <td tipo="TDEDITABILE" class="tabts-cel"   onmouseover="$(this).css('cursor','cell');">
+                            <span campo="NOMECAMPO" >
+                               <input class="tabts-input" type="text" campoass="NOMECAMPO"  onchange="StdModifica(this);" style="width: 100%;" />
+                            </span>   
+                </td>   
+                <td tipo="TDEDITABILEPLCHOLD" class="tabts-cel"   onmouseover="$(this).css('cursor','cell');">
+                    <span campo="NOMECAMPO" >
+                       <input class="tabts-input" type="text" campoass="NOMECAMPO" placeholder="DA MODIFICARE" onchange="StdModifica(this);" style="width: 100%;" />
+                    </span>   
+                </td> 
+                <td tipo="TDEDITUPPER" class="tabts-cel"   onmouseover="$(this).css('cursor','cell');">
+                    <span campo="NOMECAMPO" >
+                       <input class="tabts-input" type="text" campoass="NOMECAMPO"  onchange="StdModifica(this);" style="width: 100%;text-transform:uppercase;" />
+                    </span>   
+                </td>  
+
+                <td tipo="TDEDITLONG" class="tabts-cel"   onmouseover="$(this).css('cursor','cell');">
+                    <span campo="NOMECAMPO" >
+                       <input class="tabts-input" type="text" campoass="NOMECAMPO"  size="100"  onchange="StdModifica(this);"  />
+                     
+                    </span>   
+                </td>
+                <td tipo="TDDESCRIZIONE"  class="tabts-cel"  onmouseover="$(this).css('cursor','cell');">
+                        <span campo="NOMECAMPO">
+                             <input type="text" class="tabts-input"  campoass="NOMECAMPO" onchange="StdModifica(this);" />
+                           
+                         </span>
+                         
+                     </td>    
+                <td tipo="ACTIONS" class="tabts-cel"></td> 
+                <td tipo="TH" class="tabts-cel"></td> 
+                <td tipo="TDFILE">
+                  <div tipo="sez-container" class="form-row car-upload-file dropzonepj" bottone="" campo="NOMECAMPO" ondrop="StdFileDropGo(event,this);" ondragover="dragOverHandler(event);" style="margin:4px;display: grid;text-align: center;padding: 2px;min-height: 80px;" >
+                      <label for="auto-general-info-file" class="dz-message" tipo="CARICAFILE" bottone=""  campo="NOMECAMPO" onclick="try{console.log('load file on :'+$(this).attr('hid'));loadDocumentStdTd(this);} catch(msg){alert(msg);}" >Seleziona file</label>
+                      
+                  </div>   
+                </td>
+                <td tipo="TDFILERESI">
+                  <div tipo="sez-container" class="form-row car-upload-file dropzonepj" bottone="" campo="NOMECAMPO" ondrop="StdFileDropGo(event,this);" ondragover="dragOverHandler(event);" style="margin:4px;display: grid;text-align: center;padding: 1px;min-height: 2px;" >
+                      <label for="auto-general-info-file" class="dz-message" tipo="CARICAFILE" bottone=""  campo="NOMECAMPO" onclick="try{console.log('load file on :'+$(this).attr('hid'));loadDocumentStdTd(this);} catch(msg){alert(msg);}" >Seleziona file</label>
+                      
+                  </div>   
+                </td>
+                <td tipo="TDVEDIFILE">
+                    <span campo="NOMECAMPO"><i class="mdi mdi-file" bottone campo="NOMECAMPO" onclick="getDocumentoServer3(this);"></i> 
+                      </span>
+                </td>
+                <td tipo="TDSELECT" class="tabts-cel"   onmouseover="$(this).css('cursor','cell');">
+                  <span campo="NOMECAMPO" >
+                     <select class="tabts-input" camposelect="NOMECAMPO"  onchange="StdModificaSelect(this);"  >
+                        
+                     </select>	
+                     <!-- input class="form-control" type="hidden" name="NOMECAMPO"  onFocusout="aggiornaCampo(this);"/ -->
+                     
+                  </span>   
+                </td>
+                <td tipo="TDNOTSELECT" class="tabts-cel"   onmouseover="$(this).css('cursor','cell');">
+                  <span campo="NOMECAMPO" >
+                     <select class="tabts-input" camposelect="NOMECAMPO"  onchange="StdModificaSelect(this);"  disabled>
+                        
+                     </select>	
+                     <!-- input class="form-control" type="hidden" name="NOMECAMPO"  onFocusout="aggiornaCampo(this);"/ -->
+                     
+                  </span>   
+                </td>
+                <td tipo="TDSELECTD" class="tabts-cel"   onmouseover="$(this).css('cursor','cell');">
+                  <span campo="NOMECAMPO" >
+                    <select class="tabts-input" camposelect="NOMECAMPO"  onchange="StdModificaSelect(this);"  >
+                        
+                    </select>	
+                    <button class="fa fa-check" style="display: none; margin-left: 20px; font: normal normal normal 14px/1 FontAwesome;" bottone="tdselectd" onclick="attiva_disattiva_select(this)"></button>
+                  </span>   
+                </td>
+                <td tipo="TDSELECTDNOMOD" class="tabts-cel"   onmouseover="$(this).css('cursor','cell');">
+                    <span campo="NOMECAMPO" >
+                      <select class="tabts-input" disabled camposelect="NOMECAMPO"  onchange="StdModificaSelect(this);"  >
+                          
+                      </select>	
+                      <button class="fa fa-check" title="Riabilita" style="margin-left: 20px; font: normal normal normal 14px/1 FontAwesome;" bottone="tdselectd" onclick="attiva_disattiva_select(this)"></button>
+                    </span>   
+                  </td>
+                <td tipo="TDEDITMODTRASFERTE" class="tabts-cel"   onmouseover="$(this).css('cursor','cell');">
+                        <span campo="NOMECAMPO" >
+                           <select class="tabts-input" campoass="NOMECAMPO"  onchange="StdAggiornaCampoSelect(this);"  >
+                                <option value="UNA_AL_GIORNO"  >Una al giorno</option>
+                                <option value="DUE_AL_GIORNO"  >Due al giorno</option>
+                                <option value="UNA_A_SETTIMANA" >Una a settimana</option>
+                                <option value="DUE_GIORNI_A_SETTIMANA"  >Due giorni a settimana</option>
+                                <option value="TRE_GIORNI_A_SETTIMANA"  >Tre giorni a settimana</option>
+                                <option value="UNA_OGNI_DUE_SETTIMANE" >Una ogni due settimane</option>
+                           </select>	
+                           <!-- input class="form-control" type="hidden" name="NOMECAMPO"  onFocusout="aggiornaCampo(this);"/ -->
+                           
+                        </span>   
+                    </td>
+                    <td tipo="TDLISTASPESE" class="tabts-cel"   onmouseover="$(this).css('cursor','cell');">
+                        <span campo="NOMECAMPO" >
+                           <select class="tabts-input" camposelect="NOMECAMPO"  onchange="StdModificaSelect(this);"  >
+                                <option value=" "  > </option>
+                                <option value="PRANZO"  >Pranzo</option>
+                                <option value="CENA" >Cena</option>
+                                <option value="ALBERGO" >Albergo</option>
+                                <option value="PEDAGGIO" >Pedaggio</option>
+                                <option value="PARCHEGGIO" >Parcheggio</option>
+                                <option value="TAXI" >Taxi</option>
+                                <option value="TRENO" >Treno/bus</option>
+                                <option value="NOLEGGIO" >Noleggio</option>
+                                <option value="RAPPRESENTANZA" >Rappresentanza</option>
+                                <option value="BAR" >Bar</option>
+                                <option value="AEREO" >Aereo</option>
+                                <option value="ALTRO" >Altro</option>
+                                <option value="KM" >Chilometri</option>
+                                <option value="AUTOSTRADA" >Autostrada</option>
+                           </select>	
+                           <!-- input class="form-control" type="hidden" name="NOMECAMPO"  onFocusout="aggiornaCampo(this);"/ -->
+                           
+                        </span>   
+                    </td>
+                    <td tipo="TDSINO" class="tabts-cel"   onmouseover="$(this).css('cursor','cell');">
+                            <span campo="NOMECAMPO" >
+                               <select class="tabts-input" campoass="NOMECAMPO"  onchange="StdAggiornaCampoSelect(this);" style="width:90%;" >
+                                    <option   selected></option>
+                                    <option value="SI"  >Si</option>
+                                    <option value="NO" >No</option>
+                               </select>	
+                               <!-- input class="form-control" type="hidden" name="NOMECAMPO"  onFocusout="aggiornaCampo(this);"/ -->
+                               
+                            </span>   
+                        </td>
+                    <td tipo="TDEDITTIPOMANODOPERA" class="tabts-cel"  onmouseover="$(this).css('cursor','cell');" >
+                        <span campo="NOMECAMPO" >
+                            <select class="tabts-input" campoass="NOMECAMPO"  onchange="StdAggiornaCampoSelect(this);"  >
+                                #REPEAT##LISTX#PARAMETRI->TIPO_MANODOPERA#LISTX#
+                                <option value="#$#VALORE#$#" >#$#DESCRIZIONE#$#</option>
+                                #REPEAT#
+                            </select>	
+                            <!-- input class="form-control" type="hidden" name="NOMECAMPO"  onFocusout="aggiornaCampo(this);"/ -->
+                        
+                        </span>   
+                    </td>   
+                    <td tipo="TDEDITTIPOMANODOPERA100PX" style="width: 3rem" class="tabts-cel"  onmouseover="$(this).css('cursor','cell');" >
+                      <span campo="NOMECAMPO" >
+                          <select class="tabts-input" style="width: auto" campoass="NOMECAMPO"  onchange="StdAggiornaCampoSelect(this);"  >
+                              #REPEAT##LISTX#PARAMETRI->TIPO_MANODOPERA#LISTX#
+                              <option value="#$#VALORE#$#" >#$#DESCRIZIONE#$#</option>
+                              #REPEAT#
+                          </select>	
+                          <!-- input class="form-control" type="hidden" name="NOMECAMPO"  onFocusout="aggiornaCampo(this);"/ -->
+                      
+                      </span>   
+                  </td>  
+                    <td tipo="TDEDITUM" class="tabts-cel" style="width: 60px"  onmouseover="$(this).css('cursor','cell');">
+                        <span campo="NOMECAMPO" >
+                            <select class="tabts-input" campoass="NOMECAMPO"  onchange="StdAggiornaCampoSelect(this);" >
+                                <option value="NR" >NR</option>
+                                <option value="MT" >MT</option>
+                                <option value="MQ" >MQ</option>
+                                <option value="KG" >KG</option>
+                                <option value="AC" >AC</option>
+                                <option value="ML" >ML</option>
+                            </select>	
+                            <!-- input class="form-control" type="hidden" name="NOMECAMPO"  onFocusout="aggiornaCampo(this);"/ -->
+                            
+                        </span>   
+                    </td>
+                    <td tipo="TDEDITTIPOCOSTO" class="tabts-cel"   onmouseover="$(this).css('cursor','cell');" >
+                        <span campo="NOMECAMPO" >
+                            <select class="tabts-input" campoass="NOMECAMPO"  onchange="StdAggiornaCampoSelect(this);" >
+                                #REPEAT##LISTX#PARAMETRI->TIPO_COSTO#LISTX#
+                                <option value="#$#VALORE#$#" >#$#DESCRIZIONE#$#</option>
+                                #REPEAT#
+                            </select>	
+                            <!-- input class="form-control" type="hidden" name="NOMECAMPO"  onFocusout="aggiornaCampo(this);"/ -->
+                           
+                        </span>   
+                    </td>
+                    <td tipo="TDEDITTIPOCOSTO100PX" class="tabts-cel" style="width: 6rem"  onmouseover="$(this).css('cursor','cell');" >
+                      <span campo="NOMECAMPO" >
+                          <select class="tabts-input" campoass="NOMECAMPO" style="width: auto;"  onchange="StdAggiornaCampoSelect(this);" >
+                              #REPEAT##LISTX#PARAMETRI->TIPO_COSTO#LISTX#
+                              <option value="#$#VALORE#$#" >#$#DESCRIZIONE#$#</option>
+                              #REPEAT#
+                          </select>	
+                          <!-- input class="form-control" type="hidden" name="NOMECAMPO"  onFocusout="aggiornaCampo(this);"/ -->
+                         
+                      </span>   
+                  </td>
+                    <td tipo="TDEDITTIPODOC" class="tabts-cel"   onmouseover="$(this).css('cursor','cell');" >
+                      <span campo="NOMECAMPO" >
+                          <select class="tabts-input" campoass="NOMECAMPO"  onchange="StdAggiornaCampoSelect(this);" >
+                              
+                              <option value="PDF" >Pdf</option>
+                              <option value="DOC" >Doc</option>
+                              <option value="IMMAGINE" >Immagine</option>
+                              <option value="XLS" >Excel</option>
+                              <option value="TEXT" >Text</option>
+                              <option value="XML" >Xml</option>
+                              <option value="JSON" >Json</option>
+                              
+                          </select>	
+                          <!-- input class="form-control" type="hidden" name="NOMECAMPO"  onFocusout="aggiornaCampo(this);"/ -->
+                         
+                      </span>   
+                    </td>
+                  <!--td tipo="TDFILE" class="tabts-cel"  >
+                   
+                  </td-->
+                  <td tipo="TDEDITCATEGORIADOC" class="tabts-cel"   onmouseover="$(this).css('cursor','cell');" >
+                    <span campo="NOMECAMPO" >
+                        <select class="tabts-input" campoass="NOMECAMPO"  onchange="StdAggiornaCampoSelect(this);" >
+                            <option value="CAPITOLATO" >Capitolato</option>
+                            <option value="TECNICA" >Documentazione Tecnica</option>
+                            <option value="PREVENTIVI" >Altri Preventivi</option>
+                            <option value="ALTRO" >Altro</option>
+                        </select>	
+                        <!-- input class="form-control" type="hidden" name="NOMECAMPO"  onFocusout="aggiornaCampo(this);"/ -->
+                       
+                    </span>   
+                  </td>
+
+
+                  <td tipo="TDQRCODE" class="tabts-cel">
+                    <span campo="NOMECAMPO" style="display:inline-flex;width:95%">
+                        <div tipo="qrcode" id="qrcode" style="float: left; " campoqrcode="NOMECAMPO"></div>
+                        <!-- <img src="/htmlok/img/simple_icon.svg" campoimage="IMAGE" class="Icon3 dragme ui-draggable ui-draggable-handle"  > -->
+                    </span>
+                  </td>
+
+        </tr>
+    </tbody>
+</table>
+
+<div id="TabellaStd" style="display:none;" tipo="tabella">
+    <div class="row" tipo="comandi" style="display:none;">
+        <div style="float:right;">
+        <button azione="COMPRIMI" onclick="minimizzaLaVista(this); return false;" ><i class="mdi mdi-chevron-up" ></i></button>
+      </div>
+    </div>
+  <table id="TabellaStdOld" width="100%">    
+      <thead>
+          <tr style="display:none;">
+          
+          </tr>
+      </thead>
+      <tbody >
+          <tr class="bordered-table-row"  style="display:none;"></tr>
+      </tbody>
+  
+  </table>
+  </div>
+  </div>
+  
+  
+  <div class="card background-trasparente" id="TabellaMauro" closerow="S" style="display:none;" tipo="tabella">
+      <div class="titoli-affincati">
+        <div>
+          <h6 class="m-0 font-weight-bold text-primary"  campoagg="TITOLO" tipo="TITOLO"></h6>
+        </div>
+        <div class="right-box" tipo="campiricerca" style="display:none;">
+            <div class="search-in-table" ><input class="search"  tipo="strricerca" placeholder="Ricerca..." type="search"   type="text"></div>
+            <a href="#" class="plus-yellow"><img src="#$#_SERVER#$#/hopperix/img/plus-yellow.svg"></a>
+          </div>
+        <div class="right-box">
+          <div class="search-in-table"><input class="search" placeholder="Filtra" type="search"  oninput="filtraTable(this);" type="text"></div>
+          <a href="#" class="plus-yellow"><img src="#$#_SERVER#$#/hopperix/img/plus-yellow.svg"></a>
+        </div>
+      </div>
+      <div class="card-body overflow-table">
+        <table closerow="S">
+            <thead>
+                <tr class="title-row" style="display:none;">
+                </tr>
+              </thead>
+              <tbody>
+              <tr style="display:none;" >
+               
+              </tr>
+              
+              </tbody>
+         
+       </table>
+      </div>
+      <!--div class="close-row"></div-->
+      <div class="titoli-affincati" style="padding-right: 0.5rem;">
+        <div></div>
+        <div class="right-box pagination">
+            <!--span class="paginate_button page-item" tipo="cardTabella_pageOne" style="display:none;"> 
+                <a tabindex="0" class="page-link" onclick="returnPageOne(this);return(false);">Ritorna a pagina 1</a>
+            </span-->
+          <span tipo="cardTabella_prev">
+            <a href="#" class="next-prev" onclick="paginaPrev(this);return(false);" ><img src="#$#_SERVER#$#/hopperix/img/next-prev-arrow.svg"></a>
+          </span>
+          <div class="page-of-pagination" tipo="cardTabella_infoold"  style="display:none;">Pagina <b>1 di 1</b></div>
+          <div class="page-of-pagination" tipo="cardTabella_info2" >Pagina <input type="number" onchange="goToPage(this);" step="1" min="1" tipo="pagcorr" style="width: 3rem;font-weight: bolder;"></span> di <span tipo="pagtot" style="font-weight: bolder;"></span></div>
+          <span tipo="cardTabella_next">
+            <a href="#" class="next-prev next"  onclick="paginaNext(this);return(false);" ><img src="#$#_SERVER#$#/hopperix/img/next-prev-arrow.svg"></a>
+            </span>
+        </div>
+      </div>
+      </div>
+
+</div>

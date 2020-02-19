@@ -1,0 +1,482 @@
+<html>
+    <head>
+        <script src="js/three.js?v=3"></script>
+        <script src="js/OrbitControls.js"></script>
+        <script src="js/ConvexHull.js"></script>
+        <script src="js/ConvexGeometry.js"></script>
+        <script src="js/ThreeCSG.js?v=3"></script>
+        <script src="js/threeBSP.js"></script>
+        <script src="js/exporters/STLExporter.js"></script>
+        <script src="js/exporters/OBJExporter.js"></script>
+        <script src="js/tcsg.js"></script>
+        <script src="js/csg.js?v=4"></script>
+     <!--    <script src="js/materials/MeshPhongMaterial.js?v=4"></script> -->
+       <!--  <script src="js/three.js"></script>
+        <script src="js/OrbitControls.js"></script> -->
+      
+        <link rel="stylesheet" href="/css/Roboto.css">
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/login.css">
+        <link rel="stylesheet" href="/css/jquery.gritter.css">
+        <link rel="stylesheet" href="/css/jquery-ui.min.css">
+        <link rel="stylesheet" href="./css/sb-admin-2.css">
+        <!-- link rel="stylesheet" href="/css/fontawesome-all.min.css" -->
+        <link rel="stylesheet" href="/selectize/css/selectize.css?v=5">
+        <link rel="stylesheet" href="/selectize/css/selectize.default.css?v=28">
+        <link rel="stylesheet" href="/adminlte/plugins/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/adminlte/dist/css/adminlte.min.css?v=03">
+        <link rel="stylesheet" href="/materialdesign/css/materialdesignicons.min.css">
+        <script src="/js/jquery-3.3.1.min.js" ></script>
+        <script src="/js/popper.min.js"></script>
+       
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/jquery-ui.min.js"></script>
+        <script>
+            jQuery.fn.bstooltip = jQuery.fn.tooltip;
+            
+        </script>
+        <script src="/jssds/funzioni.js" ></script>
+        <script src="/jssds/calendar.js?v=1"></script>
+        <script src="/jssds/risorsa.js" ></script>
+        <script src="/jssds/viste.js" ></script>
+        <style>
+			body { margin: 0; }
+			canvas { width: 100%; height: 100% }
+        </style>
+        <style>
+            @font-face {
+            font-family: 'gothamroundedbold';
+            src: url('/htmlok/css/fonts/GothamRoundedBold_21016.ttf');
+        }
+        @font-face {
+            font-family: 'gothamroundedbook';
+            src: url('/htmlok/css/fonts/GothamRoundedBook_21018.ttf');
+        }
+        @font-face {
+            font-family: 'gothamroundedlight';
+            src: url('/htmlok/css/fonts/GothamRoundedLight_21020.ttf');
+        }
+        @font-face {
+            font-family: 'gothamroundedmedium';
+            src: url('/htmlok/css/fonts/GothamRoundedMedium_21022.ttf');
+        }
+        
+        html {
+            height: 100%;
+        }
+        img {
+            border: 0px;
+        }
+        .clr1{
+            color:#2d5e62;
+            }
+        .clr2{    
+            color:#ec8f1c
+            }
+        .bclr1{
+            background-color:#2d5e62;
+            }
+        .bclr2{    
+            background-color:#ec8f1c
+            }
+        .bclr2{    
+            background-color:#fae3c7;
+            border-radius:0.4rem;
+            }
+        .bordclr1{
+            border-color:#2d5e62;
+            border-style: solid;
+            border-width: thin;
+            border-radius: 8px;
+            }
+        .bordclr2{    
+            border-left-color:#ec8f1c;
+            border-left-style: solid;
+            border-left-width: thick;
+            
+           /* border-radius: 8px;*/
+            }    
+        body {
+            font: 18px gothamroundedbook, Arial, Helvetica, sans-serif; 
+            font-family: gothamroundedbook;
+            height: 100%; 
+            width: 100%; 
+            margin: 0px; 
+           /* background: url("../img/sfondo.png") repeat top left; 
+            background-size: cover;*/
+        }
+        label{
+            min-width: 240px;
+            margin: 0px!important;
+            padding: 0px 0px 0px 10px;
+            font-size: 10px;
+            color: #ec8f1c;
+            height: 18px;
+            line-height: 18px;
+            display:inline-block;
+        }
+        
+        #main-container{
+            width:95%;
+        }
+        
+        .wrapper aside {
+            width:20%;
+        }
+        
+        .form-group label{
+            margin-left:6px;
+        }
+        .form-group input{
+            margin-left:6px;
+            border-style: none;
+            background-color: #dae7e7;
+            padding-left:3px;
+        }
+        
+        .icona{
+            color:#cae7e7;
+        }
+        
+        a{
+            color:#2d5e62;
+        }
+        .pjcont{
+            margin:8px;
+            /*display:inline-flex;*/
+            width:95%;
+           
+           /* text-align: center;*/
+        }
+        
+        .label{
+            min-width: 150px;
+            margin: 0px!important;
+            padding: 0px 0px 0px 10px;
+            font-size: 10px;
+            color: #ec8f1c;
+            height: 18px;
+            line-height: 18px;
+            display:inline-block;
+        }
+        .dato{
+            min-width: 70%;
+            font-weight: bolder;
+        }
+        
+        h2{
+            font-weight: bold;
+        }
+table .title-row, table .title-row td {
+    background-color: #e49d1b;
+    height: 50px;
+    color: #FFF;
+}
+table .close-row, table .close-row td {
+    background-color: #e49d1b;
+    border-right: 0px;
+}
+
+.sbottone2 {
+    padding:6px;
+    border-radius:4px;
+  /*   margin-bottom:4px;
+ */}
+
+.sbottone {
+    padding:6px;
+    border-radius:4px;
+  /*   margin-bottom:4px;
+ */}
+
+        /* --- CHECKBOX --- */
+  .custom-checkbox {
+    border: solid 1px #87B6B6;
+    border-radius: 3px;
+    /* height: 20px;
+    width: 20px; */
+    height: 20px;
+    width: 20px;
+    background-color: #C9DEDE;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+  }
+
+  .custom-tick {
+    height: 25px;
+    width: 25px;
+    background-image: url(../img/icona-check2.svg);
+    background-repeat: no-repeat;
+    /* background-position: center; */
+    background-size: contain;
+    margin: -3px;
+  }
+
+  .custom-checkbox.disbled {
+    border-color:lightgray;
+    pointer-events: none;
+  }
+
+  .span-checkbox {
+    /* margin-left: -15%; */
+    color: #234C50;
+    font-weight: 700;
+    position: relative;
+    /* bottom: 4px; */
+  }
+        
+
+  .tabts-cel, .tabts-celh {
+    height: 15px; 
+    vertical-align: middle; 
+    white-space: nowrap; 
+    /*overflow: hidden; */
+   /* padding: 2px 0px;*/ 
+    color: #444444; 
+    border-bottom: 1pt solid #DDDDDD; 
+    border-left: 1pt solid #DDDDDD; 
+    color: #000000; 
+    font-weight: normal;
+    text-align: left;
+    font-size: 0.6rem;
+}
+
+:focus{
+    outline: none;
+}
+
+input:focus {
+    outline:var(--hop-o);
+}
+
+select:focus {
+    outline:var(--hop-o);
+}
+
+.tabts-celh{
+    max-width: 80px;
+}
+.tabts-celh {font-weight: bold; border-top: 1pt solid #BBBBBB; border-bottom: 1pt solid #BBBBBB;}
+.tabts-input {
+    /*font-size: 13px; */
+    font-size:0.7rem!important;
+    border: 0px; 
+    text-align: left; 
+	background: transparent; 
+	white-space:normal;
+    /*width: 25px; */
+	padding: 1px;
+	-moz-appearance: textfield;
+	-webkit-appearance: textfield;
+}
+.tabts-input::-webkit-outer-spin-button, .tabts-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.tabts-cel .selectize-control {
+  
+	white-space:normal;
+    /*width: 25px; */
+
+}
+.table td.indent0{
+    padding-left:4px;
+    font-weight: 400;
+}
+.table td.indent1{
+    padding-left:15px;
+    font-weight: 400;
+}
+.table td.indent2{
+    padding-left:30px;
+    font-weight: 400;
+}
+.table td.indent3{
+    padding-left:45px;
+    font-weight: 400;
+}
+.table td.indent4{
+    padding-left:60px;
+    font-weight: 400;
+}
+.table td.indent5{
+    padding-left:75px;
+    font-weight: 400;
+}
+.table td.indent6{
+    padding-left:75px;
+    font-weight: 400;
+}
+.table td.indent7{
+    padding-left:75px;
+    font-weight: 400;
+}
+.table td.indent8{
+    padding-left:75px;
+}
+
+
+
+    </style>
+    </head>
+    <body onload="bonload();">
+        <script>
+            
+            function onDocumentMouseUp(event) {
+                    event.preventDefault();
+                    var vector = new THREE.Vector3((event.clientX / window.innerWidth) * 2-1, -(event.clientY / window.innerHeight) * 2 + 1, 0.5);
+                    //projector.unprojectVector(vector, camera);
+                    var raycaster = new THREE.Raycaster(camera.position, vector.sub(camera.position).normalize());
+                    raycaster.setFromCamera(vector.sub(camera.position),camera);
+                    var intersects = raycaster.intersectObjects(objects);
+                    if (intersects.length > 0) {
+                        
+                        console.log(intersects.length);
+                        var position = intersects[0].point;
+
+                        console.log(position);
+                        position = intersects[0].object.position;
+                        console.log(position);
+
+                    }
+                }
+        </script>
+        <script>
+           /*  import * as THREE from './js/three.module.js';
+
+            import { OrbitControls } from './jsm/OrbitControls.js?v=2';
+ */
+           
+           
+           // window.onmouseup=onDocumentMouseUp;
+        </script>
+        <script src="jstup/tup.js?v=373"></script>
+        <div class="bclr2 clr1" style="position: fixed;top:10px;left:10px;z-index:100; padding:1rem;" tipo="Menu">
+            <div style="text-align: center;font-size:0.8rem;font-weight: bolder;">
+                <span>Azioni sulla scena</span>
+            </div>
+            
+            <div style="margin-bottom: 8px;">
+                <!-- <span><i class="mdi mdi-vector-curve" onclick="creacurva();"></i></span> -->
+                <div style="display:inline;">
+                <span class="sbottone" title="Select Mode" mbottone="SELECT" onclick="activateBottone(this);event.stopPropagation();">
+                    <i class="mdi mdi-cursor-default-click-outline"   ></i>
+                </span>
+                <span class="sbottone" title="Add Point Mode" mbottone="ADDPOINT" onclick="activateBottone(this);event.stopPropagation();">
+                    <i class="mdi mdi-plus-circle-outline"   ></i>
+                </span>
+                <span class="sbottone" title="Drag Mode" mbottone="DRAG" onclick="activateBottone(this);event.stopPropagation();">
+                    <i class="mdi mdi-selection-drag"   ></i>
+                </span>
+
+
+                <span class="sbottone" title="Move X" mbottone="MOVEX" onclick="activateBottone(this);event.stopPropagation();">
+                    <i class="mdi mdi-alpha-x-circle-outline"   ></i>
+                </span>
+                <span class="sbottone" title="Move Y" mbottone="MOVEY" onclick="activateBottone(this);event.stopPropagation();">
+                    <i class="mdi mdi-alpha-y-circle-outline"   ></i>
+                </span>
+                <span class="sbottone" title="Move Z" mbottone="MOVEZ" onclick="activateBottone(this);event.stopPropagation();">
+                    <i class="mdi mdi-alpha-z-circle-outline"   ></i>
+                </span>
+                
+                
+                <span class="sbottone" title="Clear Scene" mbottone="CLEARSCENE" onclick="activateBottone(this);event.stopPropagation();freeScene();">
+                    <i class="mdi mdi-crop-free"   ></i>
+                </span>
+                
+                <span class="sbottone" title="Reset Azioni"  onclick="activateBottone(this);event.stopPropagation();" mbottone="RESET" ><i class="mdi mdi-lock-reset"></i></span>
+                </div>
+                <div style="border-left:black;display:inline;border-left-style:solid;border-width:thin;"> 
+                    <span class="sbottone2" title="Add Points Object" onclick="addPointsObject(this);event.stopPropagation();">
+                        <i class="mdi mdi-vector-bezier"   ></i>
+                    </span>
+                    <span class="sbottone2" title="Add Points Object from selection" onclick="addPointsObjectFromSel(this);event.stopPropagation();">
+                        <i class="mdi mdi-tag-plus"   ></i>
+                    </span>
+                    <span class="sbottone2" title="Add Circle Object" onclick="fAddCircle(this);event.stopPropagation();">
+                        <i class="mdi mdi-circle-outline"   ></i>
+                    </span>
+                    <span class="sbottone2" title="Add Square Object" onclick="fAddSquare(this);event.stopPropagation();">
+                        <i class="mdi mdi-crop-square"   ></i>
+                    </span>
+                    
+                    <span class="sbottone2" title="Add Prism Object" onclick="fCreaPrisma(this);event.stopPropagation();">
+                        <i class="mdi mdi-triangle-outline"   ></i>
+                    </span>
+                    <span class="sbottone2" title="Subtract Shapes in new shape " onclick="fSubtract(this);event.stopPropagation();">
+                        <i class="mdi mdi-vector-difference"   ></i>
+                    </span>
+                    
+                    <span class="sbottone2" title="Add CSG Difference" onclick="fDifference(this);event.stopPropagation();">
+                        <i class="mdi mdi-vector-difference-ba"   ></i>
+                    </span>
+                    <span class="sbottone2" title="Add Cube" onclick="fAddCube(this);event.stopPropagation();">
+                        <i class="mdi mdi-cube-outline"   ></i>
+                    </span>
+
+                    <span class="sbottone2" title="Pulisci selezione" mbottone="SELCLEAR" onclick="event.stopPropagation();selezioneCorrente=[];">
+                        <i class="mdi  mdi-selection-off"   ></i>
+                    </span>
+                   
+                    <span class="sbottone2" title="Search" mbottone="SEARCH" onclick="event.stopPropagation();searchF();">
+                        <i class="mdi mdi-feature-search-outline"   ></i>
+                    </span>
+                    
+                </div>
+            </div>
+            <div tipo="azioni"></div>
+        </div>
+
+        <div class="bclr2 clr1" style="position: fixed;top:10px;right:10px;z-index:100; padding:1rem;" tipo="Menu">
+            <div style="text-align: center;font-size:0.8rem;font-weight: bolder;"><span>Azioni sulla telecamera</span></div>
+            <div style="margin-bottom: 8px;">
+                 <!-- <span><i class="mdi mdi-vector-curve" onclick="creacurva();"></i></span> -->
+                 <span class="sbottone2" title="Rotate " cameraoption="enableRotate" onclick="activateCameraOption(this);event.stopPropagation();">
+                     <i class="mdi mdi-rotate-3d"   ></i>
+                 </span>
+                 <span class="sbottone2" title="X camera "  onclick="xCamera(this);event.stopPropagation();">
+                    <i class="mdi  mdi-format-horizontal-align-left"   ></i>
+                </span>
+                <span class="sbottone2" title="Y camera "  onclick="yCamera(this);event.stopPropagation();">
+                    <i class="mdi  mdi-format-horizontal-align-right"   ></i>
+                </span>
+                 
+                 <span class="sbottone2" title="Z camera "  onclick="zCamera(this);event.stopPropagation();">
+                    <i class="mdi mdi-format-vertical-align-bottom"   ></i>
+                </span>
+                
+
+                <span class="sbottone2" title="Griglia "  onclick="fGrid(this);event.stopPropagation();">
+                    <i class="mdi mdi-grid"   ></i>
+                </span>
+                <span class="sbottone2" title="Griglia XZ "  onclick="fGridY(this);event.stopPropagation();">
+                    <i class="mdi mdi-grid"   ></i>
+                </span>
+                 
+                <span class="sbottone2" title="Griglia YZ "  onclick="fGridX(this);event.stopPropagation();">
+                    <i class="mdi mdi-grid"   ></i>
+                </span>
+                 
+                
+                 <span class="sbottone2" title="Reset Camera"  onclick="resetCameraOption(this);event.stopPropagation();" >
+                    <i class="mdi mdi-lock-reset"></i>
+                </span>
+             </div>
+             
+         </div>
+       
+        
+        <div id="hopconfirm" style="display: none" >
+            <p><span class="mdi mdi-comment-question-outline" tipo="icon" style="font-size:2rem;float:left; margin: 0 0.5rem;"></span>
+                <span tipo="testo">Sei sicuro di voler eliminare il documento?</span></p>
+        </div>
+      
+    </body>
+</html>
